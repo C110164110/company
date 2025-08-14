@@ -1,206 +1,108 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>公司服務預約系統</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{--accent:#2f80ed;--bg:#f4f7fb;--card:#fff;--muted:#7b8aa3;--radius:12px}
-  body{margin:0;font-family:Inter, "Noto Sans TC", "微軟正黑體", system-ui;background:linear-gradient(180deg,var(--bg),#eef4fb)}
-  .wrap{max-width:980px;margin:28px auto;padding:20px}
-  header{display:flex;align-items:center;gap:14px}
-  .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#1663b8);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-  h1{margin:0;font-size:1.4rem}
-  .card{background:var(--card);border-radius:var(--radius);padding:18px;margin-top:16px;box-shadow:0 10px 30px rgba(18,38,70,0.06)}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-  @media(max-width:900px){.grid{grid-template-columns:1fr}}
-  label{display:block;font-weight:600;margin-bottom:6px}
-  select,input,button{width:100%;padding:10px;border-radius:10px;border:1px solid #e6eefb;background:#fff;font-size:15px}
-  .times{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .time-btn{padding:9px 12px;border-radius:10px;border:1px solid #e6eefb;background:#f8fbff;cursor:pointer}
-  .time-btn.disabled{opacity:0.5;cursor:not-allowed}
-  .time-btn.active{background:var(--accent);color:#fff;border:none}
-  .small{font-size:13px;color:var(--muted)}
-  button.primary{background:var(--accent);color:#fff;border:none;font-weight:700;cursor:pointer}
-  .notice{padding:10px;border-radius:10px;background:#fffbe6;border:1px solid #fff0c2;color:#6a4b00;margin-top:10px;display:none}
-  .success{padding:10px;border-radius:10px;background:#ecffef;border:1px solid #d7f8dd;color:#114b24;margin-top:10px;display:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Nuloop 循環好物智慧生活</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/logo.svg">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">SVC</div>
-      <div>
-        <h1>公司服務預約系統</h1>
-        <div class="small">分離式冷氣清洗 / 網路線施作 — 線上即時預約</div>
+  <!-- 導覽列 -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Nuloop</div>
+      <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="products.html">商品</a>
+      <a href="plans.html">方案</a>
+      <a href="contact.html">聯絡我們</a>
+      <a href="member.html">會員中心</a>
+      <a href="login.html">登入</a>
+      <a href="register.html">註冊</a>
       </div>
-    </header>
-
-    <div class="grid">
-      <div class="card">
-        <div style="margin-bottom:12px">
-          <label for="service">服務項目</label>
-          <select id="service">
-            <option value="">請選擇服務</option>
-            <option value="分離式冷氣清洗">分離式冷氣清洗</option>
-            <option value="網路線施作">網路線施作</option>
-          </select>
-        </div>
-
-        <div style="margin-bottom:12px">
-          <label for="date">日期</label>
-          <input id="date" type="date" />
-          <div class="small">請選擇日期，系統將顯示該日可預約時段</div>
-        </div>
-
-        <div style="margin-bottom:12px">
-          <label>時段</label>
-          <div id="timesContainer" class="times small">請先選擇日期</div>
-        </div>
-
-        <div style="margin-bottom:12px">
-          <label for="name">聯絡人姓名</label>
-          <input id="name" type="text" placeholder="輸入姓名" />
-        </div>
-
-        <div style="margin-bottom:12px">
-          <label for="phone">聯絡電話（選填）</label>
-          <input id="phone" type="tel" placeholder="手機或電話" />
-        </div>
-
-        <div style="display:flex;gap:10px">
-          <button id="bookBtn" class="primary">立即預約</button>
-          <button id="clearBtn">清除</button>
-        </div>
-
-        <div id="msg" class="notice"></div>
-        <div id="success" class="success"></div>
+      <div class="burger">
+        <span></span><span></span><span></span>
       </div>
+    </nav>
+  </header>
 
-      <div class="card">
-        <h3 style="margin-top:0">說明與備註</h3>
-        <p class="small">• 可預約時段（若需調整請告訴我）：09:00、10:00、11:00、13:00、14:00、15:00、16:00。</p>
-        <p class="small">• 當使用者送出預約時，後端會再次檢查衝突並鎖定寫入（避免同時兩個請求都成功）。</p>
-        <p class="small">• 若要 Email / LINE 通知我可以把你的通知需求告訴我，我會把範例加到 Apps Script。</p>
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text fade-in">
+        <div class="hero-title">循環好物<br>智慧生活</div>
+        <div class="hero-sub">想用就用・想換就換</div>
+        <button class="hero-btn btn" onclick="location.href='products.html'">開始租賃</button>
+      </div>
+      <div class="hero-img fade-in">
+        <img src="assets/img/laptop.png" alt="Nuloop Hero Banner">
       </div>
     </div>
-  </div>
+  </section>
 
-<script>
-  // ===== 變更為你的 Apps Script Web App URL（你的部署網址） =====
-  const API_BASE = 'https://script.google.com/macros/s/AKfycbwNQJa_t4PbIol1GW1C0g7eH_GquYRGs2JmHO7I8xH_2vpvD5wMObuIBhHaYMQAI0n9/exec';
+  <!-- 三大特色 -->
+  <section>
+    <div class="section-title fade-in">三大特色</div>
+    <div class="features">
+      <div class="feature-card fade-in">
+        <img src="assets/img/feature1.svg" alt="最新科技隨租">
+        <h4>最新科技隨租</h4>
+        <div>3C/生活用品彈性租賃，隨時升級</div>
+      </div>
+      <div class="feature-card fade-in">
+        <img src="assets/img/feature2.svg" alt="生活好物隨換">
+        <h4>生活好物隨換</h4>
+        <div>不再囤積，物盡其用，環保又省錢</div>
+      </div>
+      <div class="feature-card fade-in">
+        <img src="assets/img/feature3.svg" alt="彈性方案零壓力">
+        <h4>彈性方案・零壓力</h4>
+        <div>短租/長租皆可，彈性合約，輕鬆無負擔</div>
+      </div>
+    </div>
+  </section>
 
-  const TIMES = ["09:00","10:00","11:00","13:00","14:00","15:00","16:00"];
+  <!-- 熱門商品 -->
+  <section>
+    <div class="section-title fade-in">熱門商品</div>
+    <div class="product-list">
+      <div class="product-card fade-in">
+        <img src="assets/img/macbook.png" alt="MacBook">
+        <h3>MacBook</h3>
+        <p>NT$1,500 / 月</p>
+        <button class="add-btn btn" data-id="1">立即租賃</button>
+      </div>
+      <div class="product-card fade-in">
+        <img src="assets/img/iphone.png" alt="iPhone">
+        <h3>iPhone</h3>
+        <p>NT$2,000 / 月</p>
+        <button class="add-btn btn" data-id="2">立即租賃</button>
+      </div>
+      <div class="product-card fade-in">
+        <img src="assets/img/airpurifier.png" alt="空氣清淨機">
+        <h3>空氣清淨機</h3>
+        <p>NT$1,000 / 月</p>
+        <button class="add-btn btn" data-id="3">立即租賃</button>
+      </div>
+      <div class="product-card fade-in">
+        <img src="assets/img/robot.png" alt="掃地機器人">
+        <h3>掃地機器人</h3>
+        <p>NT$800 / 月</p>
+        <button class="add-btn btn" data-id="4">立即租賃</button>
+      </div>
+    </div>
+  </section>
 
-  // DOM
-  const dateInput = document.getElementById('date');
-  const timesContainer = document.getElementById('timesContainer');
-  const bookBtn = document.getElementById('bookBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const serviceSelect = document.getElementById('service');
-  const msg = document.getElementById('msg');
-  const success = document.getElementById('success');
-  const nameInput = document.getElementById('name');
-  const phoneInput = document.getElementById('phone');
+  <!-- 租賃清單按鈕與抽屜 -->
+  <button class="cart-btn" title="租賃清單">🛒</button>
+  <div class="cart-drawer"></div>
 
-  // min date = today
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.min = today;
+  <!-- Footer -->
+  <footer>
+    Nuloop &copy; 2025 循環好物智慧生活
+  </footer>
 
-  let selectedTime = null;
-
-  function showMsg(text){
-    msg.style.display = 'block';
-    msg.textContent = text;
-    success.style.display = 'none';
-  }
-  function showSuccess(text){
-    success.style.display = 'block';
-    success.textContent = text;
-    msg.style.display = 'none';
-  }
-
-  dateInput.addEventListener('change', fetchBookedAndRender);
-
-  async function fetchBookedAndRender(){
-    selectedTime = null;
-    timesContainer.innerHTML = '讀取中...';
-    success.style.display='none'; msg.style.display='none';
-    const date = dateInput.value;
-    if(!date){ timesContainer.innerHTML = '請先選擇日期'; return; }
-    try{
-      const url = new URL(API_BASE);
-      url.searchParams.set('date', date);
-      const res = await fetch(url.toString(), { method: 'GET' });
-      const json = await res.json();
-      if(!json.ok){ timesContainer.innerHTML = '取得資料失敗'; return; }
-      const booked = (json.bookings || []).map(b => b.time);
-      timesContainer.innerHTML = '';
-      TIMES.forEach(t => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'time-btn';
-        btn.textContent = booked.includes(t) ? `${t}（已滿）` : t;
-        if(booked.includes(t)) btn.classList.add('disabled');
-        btn.addEventListener('click', () => {
-          if(booked.includes(t)) return;
-          selectedTime = t;
-          document.querySelectorAll('.time-btn').forEach(el => el.classList.remove('active'));
-          btn.classList.add('active');
-        });
-        timesContainer.appendChild(btn);
-      });
-    }catch(err){
-      console.error(err);
-      timesContainer.innerHTML = '伺服器錯誤，請稍後重試';
-    }
-  }
-
-  clearBtn.addEventListener('click', () => {
-    serviceSelect.value=''; dateInput.value=''; nameInput.value=''; phoneInput.value=''; selectedTime=null;
-    timesContainer.innerHTML='請先選擇日期'; msg.style.display='none'; success.style.display='none';
-  });
-
-  bookBtn.addEventListener('click', async () => {
-    msg.style.display='none'; success.style.display='none';
-    const service = serviceSelect.value;
-    const date = dateInput.value;
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    if(!service || !date || !selectedTime || !name){
-      showMsg('請完整填寫：服務、日期、時段、聯絡人姓名');
-      return;
-    }
-
-    // 呼叫後端 POST
-    try{
-      const payload = { service, date, time: selectedTime, name, phone };
-      const res = await fetch(API_BASE, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
-      if(!data.ok){
-        if(data.error === 'conflict'){
-          showMsg('此時段剛被預訂，請選擇其他時段（或重新整理）');
-          fetchBookedAndRender(); // 重新載入預約列表
-        } else {
-          showMsg('預約失敗：' + (data.error || '未知錯誤'));
-        }
-        return;
-      }
-      showSuccess('✅ 預約成功！預約編號：' + (data.id || '已建立'));
-      fetchBookedAndRender();
-    }catch(err){
-      console.error(err);
-      showMsg('送出時發生錯誤，請稍後再試');
-    }
-  });
-
-  // 如果載入時已有日期值，立即抓取
-  if(dateInput.value) fetchBookedAndRender();
-</script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
